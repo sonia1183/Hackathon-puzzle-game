@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Tile from "./tiles";
 import { TILE_COUNT, GRID_SIZE, BOARD_SIZE } from "./constant"
 import { canSwap, shuffle, swap, isSolved } from "./helper"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faRedo} from '@fortawesome/free-solid-svg-icons'
 
 function Board({ imgUrl }) {
   const [tiles, setTiles] = useState([...Array(TILE_COUNT).keys()]);
@@ -58,8 +60,8 @@ function Board({ imgUrl }) {
       </ul>
       {hasWon && isStarted && <div>Puzzle solved 🧠 🎉</div>}
       {!isStarted ?
-        (<button onClick={() => handleStartClick()}>Start game</button>) :
-        (<button onClick={() => handleShuffleClick()}>Restart game</button>)}
+        (<button onClick={() => handleStartClick()}><FontAwesomeIcon icon={faRedo} /> Shuffle</button>) :
+        (<button onClick={() => handleShuffleClick()}><FontAwesomeIcon icon={faRedo} /> Shuffle</button>)}
     </>
   );
 }
