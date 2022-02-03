@@ -1,7 +1,7 @@
-import { TILE_COUNT, GRID_SIZE } from "./constant"
+import { TILES, TOTAL_GRID } from "./constant"
 export function isSolvable(tiles) {
   let product = 1;
-  for (let i = 1, l = TILE_COUNT - 1; i <= l; i++) {
+  for (let i = 1, l = TILES - 1; i <= l; i++) {
     for (let j = i + 1, m = l + 1; j <= m; j++) {
       product *= (tiles[i - 1] - tiles[j - 1]) / (i - j);
     }
@@ -19,12 +19,12 @@ export function isSolved(tiles) {
 }
 
 export function getIndex(row, col) {
-  return parseInt(row, 10) * GRID_SIZE + parseInt(col, 10);
+  return parseInt(row, 10) * TOTAL_GRID + parseInt(col, 10);
 }
 export function getMatrixPosition(index) {
   return {
-    row: Math.floor(index / GRID_SIZE),
-    col: index % GRID_SIZE,
+    row: Math.floor(index / TOTAL_GRID),
+    col: index % TOTAL_GRID,
   };
 }
 
@@ -35,12 +35,12 @@ export function getVisualPosition(row, col, width, height) {
   };
 }
 
-export function shuffle(tiles) {
+export function shuffle(tileArray) {
   const shuffledTiles = [
-    ...tiles
-      .filter((t) => t !== tiles.length - 1)
+    ...tileArray
+      .filter((t) => t !== tileArray.length - 1)
       .sort(() => Math.random() - 0.5),
-    tiles.length - 1,
+    tileArray.length - 1,
   ];
   return isSolvable(shuffledTiles) && !isSolved(shuffledTiles)
     ? shuffledTiles

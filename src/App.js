@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Board from "./components/board";
-import { updateURLParameter } from "./components/helper"
+import PuzzleBoard from "./components/board";
+import { updateURLParameter } from "./components/calculation"
 
 function App() {
   const [imgUrl, setImgUrl] = useState("")
@@ -19,9 +19,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>React sliding puzzle</h1>
-      <Board imgUrl={imgUrl} />
-      <input value={imgUrl} onChange={handleImageChange} />
+      <h1>PICTURE PUZZLE GAME</h1>
+      <label name="url">Enter Your Choice Picture URL -: </label>
+      <input value={imgUrl} onChange={handleImageChange} name="url" className="input-style"/>
+      <PuzzleBoard imgUrl={imgUrl} />
     </div>
   );
 }

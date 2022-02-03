@@ -1,3 +1,3 @@
-export const TILE_COUNT = 16;
-export const GRID_SIZE = 4;
-export const BOARD_SIZE = 320;
+export const TILES = 16;
+export const TOTAL_GRID = 4;
+export const BOARD_DIMESSION = 500;

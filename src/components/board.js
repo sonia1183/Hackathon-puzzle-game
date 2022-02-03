@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Tile from "./tiles";
-import { TILE_COUNT, GRID_SIZE, BOARD_SIZE } from "./constant"
-import { canSwap, shuffle, swap, isSolved } from "./helper"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faRedo} from '@fortawesome/free-solid-svg-icons'
+import { TILES, TOTAL_GRID, BOARD_DIMESSION  } from "./constant"
+import BoardTile from "./tiles";
+import { canSwap, shuffle, swap, isSolved } from "./calculation"
 
-function Board({ imgUrl }) {
-  const [tiles, setTiles] = useState([...Array(TILE_COUNT).keys()]);
+function PuzzleBoard({ imgUrl }) {
+  const [tiles, setTiles] = useState([...Array(TILES).keys()]);
   const [isStarted, setIsStarted] = useState(false);
   console.log('is started:', isStarted)
 
@@ -35,11 +35,11 @@ function Board({ imgUrl }) {
     setIsStarted(true)
   }
 
-  const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE);
-  const pieceHeight = Math.round(BOARD_SIZE / GRID_SIZE);
+  const pieceWidth = Math.round(BOARD_DIMESSION  / TOTAL_GRID);
+  const pieceHeight = Math.round(BOARD_DIMESSION  / TOTAL_GRID);
   const style = {
-    width: BOARD_SIZE,
-    height: BOARD_SIZE,
+    width: BOARD_DIMESSION ,
+    height: BOARD_DIMESSION ,
   };
   const hasWon = isSolved(tiles)
 
@@ -47,7 +47,7 @@ function Board({ imgUrl }) {
     <>
       <ul style={style} className="board">
         {tiles.map((tile, index) => (
-          <Tile
+          <BoardTile
             key={tile}
             index={index}
             imgUrl={imgUrl}
@@ -58,12 +58,12 @@ function Board({ imgUrl }) {
           />
         ))}
       </ul>
-      {hasWon && isStarted && <div>Puzzle solved 🧠 🎉</div>}
+      {hasWon && isStarted && <div>PUZZLE SOLVED :)</div>}
       {!isStarted ?
         (<button onClick={() => handleStartClick()}><FontAwesomeIcon icon={faRedo} /> Shuffle</button>) :
-        (<button onClick={() => handleShuffleClick()}><FontAwesomeIcon icon={faRedo} /> Shuffle</button>)}
+        (<button onClick={() => handleShuffleClick()}><FontAwesomeIcon icon={faRedo} /> Shuffle again</button>)}
     </>
   );
 }
 
-export default Board;
+export default PuzzleBoard;
