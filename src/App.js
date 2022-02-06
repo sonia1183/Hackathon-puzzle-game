@@ -19,10 +19,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>PICTURE PUZZLE GAME</h1>
+      <div className="external-board">
       <label name="url">Enter Your Choice Picture URL -: </label>
       <input value={imgUrl} onChange={handleImageChange} name="url" className="input-style"/>
       <PuzzleBoard imgUrl={imgUrl} />
+      <span>made by- sonia</span>
+      </div>
     </div>
   );
 }
